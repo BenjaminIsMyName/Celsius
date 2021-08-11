@@ -68,9 +68,11 @@ input {
   background-color: var(--input-background);
   border: none;
   padding: 10px;
+  transition: padding 0.5s ease-in-out;
 }
 input:focus {
   outline: 2px dotted var(--input-focus-background);
+  padding: 10px 20px;
 }
 button {
   width: 80%;
@@ -81,6 +83,7 @@ button {
   border: none;
   padding: 10px 15px;
   box-shadow: 2px 2px 5px var(--buttons-box-shadow);
+  user-select: none;
 }
 button:hover {
   transition: all 0.3s linear;
@@ -95,9 +98,11 @@ button:hover {
   }
   .convert {
     padding: 30px;
+    justify-items: unset !important;
+    
   }
   .convert button {
-    width: fit-content;
+    width: unset;
   }
 }
 
@@ -115,7 +120,7 @@ button:hover {
     padding: 30px;
   }
   .convert button {
-    width: fit-content;
+    width: unset;
   }
 }
 
@@ -156,6 +161,5 @@ button:hover {
 /* focus-visible means: only on keyboard focus, not on mouse click */
 .theme:focus-visible,
 .theme:hover {
-  /* box-shadow: 0 0 4px 3px var(--theme-focus-color); */
   transform: scale(1.2) translateX(15%) translateY(-20%);
 }

@@ -1,15 +1,16 @@
+var cel = document.querySelectorAll("input")[0];
+var fahr = document.querySelectorAll("input")[1];
+
 function calc() {
-  let cel = document.querySelectorAll("input")[0].value;
-  let fahr = document.querySelectorAll("input")[1].value;
-  if (cel && fahr) alert("Please reset first");
-  else if (cel)
-    document.querySelectorAll("input")[1].value = (cel * 9) / 5 + 32;
-  else if (fahr)
-    document.querySelectorAll("input")[0].value = ((fahr - 32) * 5) / 9;
+  if (cel.value && fahr.value) alert("Please reset first (shortcut: R).\nTo switch to Auto Mode, press 'M' on your keyboard");
+  else if (cel.value)
+    fahr.value = (cel.value * 9) / 5 + 32;
+  else if (fahr.value)
+    cel.value = ((fahr.value - 32) * 5) / 9;
 }
 function reset() {
-  document.querySelectorAll("input")[0].value = "";
-  document.querySelectorAll("input")[1].value = "";
+  cel.value = "";
+  fahr.value = "";
 }
 // toggle dark and light theme 
 function theme() {
@@ -56,4 +57,41 @@ function checkIfNeedsUpdate(e) {
   theme(); 
   // delete localStorage, we follow the system's theme now (until he clicks on the ball)
   localStorage.removeItem("darkMode");
+}
+document.addEventListener('keydown', keyFunc);
+
+var auto = false;
+function keyFunc(c) {
+  if (c.key == 'm') {
+    auto = !auto;
+    if (auto) {
+      alert("Auto Mode is on")
+      cel.addEventListener("input", fromCel);
+      fahr.addEventListener("input", FromFahr);
+    }
+    else {
+      cel.removeEventListener("input", fromCel)
+      fahr.removeEventListener("input", FromFahr)
+      alert("Auto Mode is off")
+    }
+  }
+  else if (c.key == "Enter" && !auto)
+    calc();
+  else if (c.key == "r")
+    setTimeout(reset, 20);
+}
+
+function fromCel() {
+    if (cel.value == "")
+      fahr.value = "";
+    else
+  fahr.value = (cel.value * 9) / 5 + 32;
+}
+
+function FromFahr() {
+  // console.log(e.target.value)
+  if (fahr.value == "")
+    cel.value = "";
+  else
+  cel.value = ((fahr.value - 32) * 5) / 9;
 }
