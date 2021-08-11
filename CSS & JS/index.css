@@ -153,3 +153,9 @@ button:hover {
 .night {
   transform: translateY(-50%) translateX(29px);
 }
+/* focus-visible means: only on keyboard focus, not on mouse click */
+.theme:focus-visible,
+.theme:hover {
+  /* box-shadow: 0 0 4px 3px var(--theme-focus-color); */
+  transform: scale(1.2) translateX(15%) translateY(-20%);
+}
