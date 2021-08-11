@@ -1,12 +1,44 @@
+:root {
+  --background-color: lightblue;
+  --color: black;
+  --container-border: rgba(211, 211, 211, 0.6);
+  --container-box-shadow: gray;
+  --divs-background-color: rgba(255, 255, 255, 0.8);
+  --divs-border-color: rgba(169, 169, 169, 0.5);
+  --input-background: lightblue;
+  --input-focus-background: black;
+  --buttons-background: lightblue;
+  --buttons-box-shadow: lightgray;
+  --buttons-hover: rgba(65, 201, 250, 0.8);
+  --theme-color: rgb(31, 31, 31);
+
+}
+.dark {
+  --background-color: rgb(31, 31, 31);
+  --color: whitesmoke;
+  --container-border: rgb(70, 70, 70);
+  --container-box-shadow: black;
+  --divs-background-color: rgb(49, 49, 49);
+  --divs-border-color: rgb(97, 97, 97);
+  --input-background: rgba(0, 0, 0, 0.5);
+  --input-focus-background: gray;
+  --buttons-background: rgb(63, 63, 63);
+  --buttons-box-shadow: black;
+  --buttons-hover: rgb(39, 39, 39);
+  --theme-color: lightblue;
+}
+
+
+
 body {
-  background-color: rgb(31, 31, 31);
+  background-color: var(--background-color);
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: whitesmoke;
-  transition: all 0.3s linear;
+  color: var(--color);
+  /* transition: all 0.3s linear; */
 }
 .container {
   position: absolute;
@@ -15,16 +47,16 @@ body {
   transform: translate(-50%, -50%);
   width: 80%;
   height: 200px;
-  border: 8px solid rgb(70, 70, 70);
-  box-shadow: 2px 2px 5px black;
+  border: 8px solid var(--container-border);
+  box-shadow: 2px 2px 5px var(--container-box-shadow);
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 2fr 1fr 2fr;
 }
 
 .container > div {
-  background-color: rgb(49, 49, 49);
-  border: 4px solid rgb(97, 97, 97);
+  background-color: var(--divs-background-color);
+  border: 4px solid var(--divs-border-color);
   align-content: center;
   align-items: center;
   justify-items: center;
@@ -33,25 +65,26 @@ body {
   grid-gap: 15px;
 }
 input {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--input-background);
   border: none;
   padding: 10px;
 }
 input:focus {
-  outline: 2px dotted gray;
+  outline: 2px dotted var(--input-focus-background);
 }
 button {
   width: 80%;
   font-size: 1.4rem;
   border-radius: 5px;
   cursor: pointer;
-  background-color: rgb(63, 63, 63);
+  background-color: var(--buttons-background);
   border: none;
   padding: 10px 15px;
-  box-shadow: 2px 2px 5px black;
+  box-shadow: 2px 2px 5px var(--buttons-box-shadow);
 }
 button:hover {
-  background-color: rgb(39, 39, 39);
+  transition: all 0.3s linear;
+  background-color: var(--buttons-hover);
 }
 @media (max-width: 1020px) {
   .container {
@@ -84,4 +117,39 @@ button:hover {
   .convert button {
     width: fit-content;
   }
+}
+
+.theme {
+  position: relative;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  user-select: none;
+  border-radius: 50px;
+  background-color: var(--theme-color);
+  width: 60px;
+  padding: 5px;
+  outline: none;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+  z-index: 50;
+}
+.sun-and-moon-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ball {
+  position: absolute;
+  transform: translateY(-50%);
+  background-color: var(--background-color);
+  height: 23px;
+  width: 23px;
+  top: 50%;
+  left: 4px;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+}
+.night {
+  transform: translateY(-50%) translateX(29px);
 }
